@@ -1,0 +1,22 @@
+{
+    "name": "MrYzys/agora-rtc-record",
+    "description": "PHP client for Shengwang (Agora) cloud recording acquire/start/stop APIs.",
+    "type": "library",
+    "require": {
+        "php": "^7.4 || ^8.0",
+        "ext-curl": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "MrYzys\\AgoraRtcRecord\\": "src/"
+        }
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Hechuan",
+            "role": "Developer"
+        }
+    ],
+    "minimum-stability": "stable"
+}
