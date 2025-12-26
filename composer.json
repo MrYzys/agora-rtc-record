@@ -1,5 +1,5 @@
 {
-    "name": "MrYzys/agora-rtc-record",
+    "name": "mryzys/agora-rtc-record",
     "description": "PHP client for Shengwang (Agora) cloud recording acquire/start/stop APIs.",
     "type": "library",
     "require": {
