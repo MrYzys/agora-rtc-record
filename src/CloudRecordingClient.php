@@ -203,10 +203,6 @@ class CloudRecordingClient
             return $decoded ?? [];
         }
 
-        if ($statusCode >= 400 && $statusCode < 500) {
-            return $decoded ?? [];
-        }
-
         // 其他状态码（如 5xx）抛出异常
         $message = isset($decoded['message']) ? (string) $decoded['message'] : 'Agora cloud recording API error.';
         throw new CloudRecordingException($message, $statusCode, $decoded ?? null);
