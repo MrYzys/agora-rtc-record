@@ -6,12 +6,25 @@ namespace MrYzys\AgoraRtcRecord\Requests\Acquire;
 
 use stdClass;
 
+/**
+ * 第三方云存储扩展参数
+ */
 class StorageExtensionParams
 {
+    /**
+     * 服务端加密配置
+     */
     private ?string $sse = null;
 
+    /**
+     * 标签
+     */
     private ?string $tag = null;
 
+    /**
+     * S3 协议云存储的域名
+     * 当 vendor=11（其他 S3 协议云存储）时需要设置
+     */
     private ?string $endpoint = null;
 
     public function setSse(?string $sse): self

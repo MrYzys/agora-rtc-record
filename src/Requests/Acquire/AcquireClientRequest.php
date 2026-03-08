@@ -11,17 +11,39 @@ use stdClass;
  */
 class AcquireClientRequest
 {
+    /**
+     * 云端录制资源使用场景：
+     * - 0：单流录制、合流录制
+     * - 1：页面录制
+     */
     private ?int $scene = null;
 
+    /**
+     * 云端录制 RESTful API 的调用时效（小时）。
+     * 从成功开启云端录制并获得 sid 后开始计算
+     */
     private ?int $resourceExpiredHour = null;
 
     /**
+     * 另一路或几路录制任务的 resourceId，用于排除指定的录制资源
      * @var string[]|null
      */
     private ?array $excludeResourceIds = null;
 
+    /**
+     * 指定使用某个区域的资源进行录制：
+     * - 0：根据发起请求的区域就近调用资源
+     * - 1：中国
+     * - 2：东南亚
+     * - 3：欧洲
+     * - 4：北美
+     */
     private ?int $regionAffinity = null;
 
+    /**
+     * 预配置 start 参数，用于提升可用性并优化负载均衡
+     * 注意：如填写则必须与后续 start 请求中的 clientRequest 完全一致
+     */
     private ?StartParameter $startParameter = null;
 
     private ?RecordingConfig $recordingConfig = null;
