@@ -198,11 +198,17 @@ class CloudRecordingClient
             throw new CloudRecordingException('Failed to decode API response: ' . json_last_error_msg(), $statusCode);
         }
 
-        if ($statusCode < 200 || $statusCode >= 300) {
-            $message = isset($decoded['message']) ? (string) $decoded['message'] : 'Agora cloud recording API error.';
-            throw new CloudRecordingException($message, $statusCode, $decoded ?? null);
+        // 2xx 代表成功，4xx 代表数据记录不存在（也有状态返回），都正常返回
+        if ($statusCode >= 200 && $statusCode < 300) {
+            return $decoded ?? [];
         }
 
-        return $decoded ?? [];
+        if ($statusCode >= 400 && $statusCode < 500) {
+            return $decoded ?? [];
+        }
+
+        // 其他状态码（如 5xx）抛出异常
+        $message = isset($decoded['message']) ? (string) $decoded['message'] : 'Agora cloud recording API error.';
+        throw new CloudRecordingException($message, $statusCode, $decoded ?? null);
     }
 }
